@@ -51,7 +51,11 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
   }else{
     //cy.get('div[class*="spinner"]').should('not.exist')
     cy.get('button').contains(/החל|Apply/g).click({force: true})
-    cy.get('div[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
+    if(delaySeconds>0){
+      cy.get('div[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
+    }else{
+      cy.get('div[class*="spinner"]').should('not.exist')
+    }
     if(message.length>0){
        cy.contains(message).should('exist')
     }
