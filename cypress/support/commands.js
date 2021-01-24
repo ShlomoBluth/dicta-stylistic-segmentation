@@ -32,7 +32,7 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
   cy.intercept('POST', '**/'+url, {
     delayMs:1000*delaySeconds,
     statusCode: status
-  },)
+  },).as('url')
   cy.setLanguageMode(language)
   cy.get('div[id="browse-text"]').children('button').click()
   if(message.length>0){
@@ -49,10 +49,10 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
       cy.contains(message).should('exist')
     }
   }else{
-    //cy.get('div[class*="spinner"]').should('not.exist')
+    cy.get('div[class*="spinner"]',{timeout:10*60*1000}).should('not.exist')
     cy.get('button').contains(/החל|Apply/g).click({force: true})
     if(delaySeconds>0){
-      cy.get('div[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
+      cy.get('div[class*="spinner"]',{timeout:delaySeconds*1000}).should('not.exist')
     }else{
       cy.get('div[class*="spinner"]').should('not.exist')
     }
