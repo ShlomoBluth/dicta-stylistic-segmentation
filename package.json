@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ShlomoBluth/dicta-stylistic-segmentation#readme",
   "devDependencies": {
     "cypress": "^6.3.0",
+    "cypress-file-upload": "^5.0.2",
     "cypress-wait-until": "^1.7.1"
   }
 }

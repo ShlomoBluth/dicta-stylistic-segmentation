@@ -1,4 +1,5 @@
 import 'cypress-wait-until';
+import 'cypress-file-upload';
 
 Cypress.Commands.add('setLanguageMode',(language)=>{
   cy.get('body').then(elem => {
@@ -27,38 +28,40 @@ Cypress.Commands.add('setLanguageMode',(language)=>{
   }) 
 })  
 
+Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
+  if(message.length>0){
+    if(delaySeconds>0){
+      cy.contains(message,{timeout:delaySeconds*1000}).should('exist')
+    }else{
+      cy.contains(message).should('exist')
+    }
+  }
+})
+
+Cypress.Commands.add('stylisticSegmentationRun',()=>{
+  cy.get('#__BVID__12__BV_toggle_ ').click()
+  cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
+  cy.get('[type=file]').attachFile('חולין.txt')
+})
+
 
 Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,message='',delaySeconds=0})=>{
   cy.intercept('POST', '**/'+url, {
     delayMs:1000*delaySeconds,
     statusCode: status
-  },).as('url')
+  },)
+  cy.intercept('POST', '**', {
+    statusCode: 200
+  },)
   cy.setLanguageMode(language)
-  cy.get('div[id="browse-text"]').children('button').click()
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }
-  cy.get('div[class="sidebar-item text-muted"]').siblings().first().within(()=>{
-    cy.get('input').click({force: true})
+  cy.stylisticSegmentationRun().then(()=>{
+    cy.testMessage({
+      message:message,
+      delaySeconds:delaySeconds
+    })
+  
   })
-  if(url=='GetTextLargeAndSmall'){
-    if(delaySeconds>0){
-      cy.get('div[class*="spinner"]',{timeout:delaySeconds*1000}).should('not.exist')
-    }
-    if(message.length>0){
-      cy.contains(message).should('exist')
-    }
-  }else{
-    cy.get('div[class*="spinner"]',{timeout:10*60*1000}).should('not.exist')
-    cy.get('button').contains(/החל|Apply/g).click({force: true})
-    if(delaySeconds>0){
-      cy.get('div[class*="spinner"]',{timeout:delaySeconds*1000}).should('not.exist')
-    }else{
-      cy.get('div[class*="spinner"]').should('not.exist')
-    }
-    if(message.length>0){
-       cy.contains(message).should('exist')
-    }
-  }
-
 })

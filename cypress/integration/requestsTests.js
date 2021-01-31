@@ -10,25 +10,113 @@ describe('requestsTests',()=>{
   })
 
 
-  it('Error message for GetTextLargeAndSmall response with a delay of 3 minutes when clicking the run button'+
+  it('Error message for Login response with a delay of 5 minutes when clicking the run button'+
+  ' of segment page in hebrew mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'Login',
+      language:'Hebrew',
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
+      delaySeconds:60*5
+    })
+  })
+
+  it('Error message for Login response with a delay of 5 minutes when clicking the run button'+
+  ' of segment page in english mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'Login',
+      language:'English',
+      message:'Oops. Something went wrong Please try again later',
+      delaySeconds:60*5
+    })
+  })
+
+
+  
+  it('Error message for Login response with status code 500 when clicking the run button of segment page'+
+  'in hebrew mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'Login',
+      language:'Hebrew',
+      status:500,
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
+    })
+  })
+
+  it('Error message for Login response with status code 500 when clicking the run button of segment page'+
+  'in english mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'Login',
+      language:'English',
+      status:500,
+      message:'Oops. Something went wrong Please try again later'
+    })
+  })
+
+
+
+  it('Error message for UploadFile response with a delay of 5 minutes when clicking the run button'+
+  ' of segment page in hebrew mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'UploadFile',
+      language:'Hebrew',
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
+      delaySeconds:60*5
+    })
+  })
+
+  it('Error message for UploadFile response with a delay of 5 minutes when clicking the run button'+
+  ' of segment page in english mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'UploadFile',
+      language:'English',
+      message:'Oops. Something went wrong Please try again later',
+      delaySeconds:60*5
+    })
+  })
+
+
+  
+  it('Error message for UploadFile response with status code 500 when clicking the run button of segment page'+
+  'in hebrew mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'UploadFile',
+      language:'Hebrew',
+      status:500,
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
+    })
+  })
+
+  it('Error message for UploadFile response with status code 500 when clicking the run button of segment page'+
+  'in english mode',()=>{
+    cy.stylisticSegmentationRequest({
+      url:'UploadFile',
+      language:'English',
+      status:500,
+      message:'Oops. Something went wrong Please try again later'
+    })
+  })
+
+
+  it('Error message for GetTextLargeAndSmall response with a delay of 5 minutes when clicking the run button'+
   ' of segment page in hebrew mode',()=>{
     cy.stylisticSegmentationRequest({
       url:'GetTextLargeAndSmall',
       language:'Hebrew',
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר',
-      delaySeconds:60*3
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
+      delaySeconds:60*5
     })
   })
 
-  it('Error message for GetTextLargeAndSmall response with a delay of 3 minutes when clicking the run button'+
+  it('Error message for GetTextLargeAndSmall response with a delay of 5 minutes when clicking the run button'+
   ' of segment page in english mode',()=>{
     cy.stylisticSegmentationRequest({
       url:'GetTextLargeAndSmall',
       language:'English',
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר',
-      delaySeconds:60*3
+      message:'Oops. Something went wrong Please try again later',
+      delaySeconds:60*5
     })
   })
+
 
   
   it('Error message for GetTextLargeAndSmall response with status code 500 when clicking the run button of segment page'+
@@ -37,7 +125,7 @@ describe('requestsTests',()=>{
       url:'GetTextLargeAndSmall',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
@@ -47,7 +135,7 @@ describe('requestsTests',()=>{
       url:'GetTextLargeAndSmall',
       language:'English',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'Oops. Something went wrong Please try again later'
     })
   })
 
@@ -56,7 +144,7 @@ describe('requestsTests',()=>{
     cy.stylisticSegmentationRequest({
       url:'segment',
       language:'Hebrew',
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר',
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
       delaySeconds:60*6
     })
   })
@@ -66,7 +154,7 @@ describe('requestsTests',()=>{
     cy.stylisticSegmentationRequest({
       url:'segment',
       language:'English',
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר',
+      message:'Oops. Something went wrong Please try again later',
       delaySeconds:60*4
     })
   })
@@ -78,7 +166,7 @@ describe('requestsTests',()=>{
       url:'segment',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
@@ -88,7 +176,7 @@ describe('requestsTests',()=>{
       url:'segment',
       language:'English',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'Oops. Something went wrong Please try again later'
     })
   })
     
