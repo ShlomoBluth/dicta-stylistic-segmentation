@@ -41,7 +41,14 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
 Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
-  cy.get('[type=file]').attachFile('חולין.txt')
+  cy.get('[type=file]').attachFile('חולין.txt').trigger('change', {force: true});
+})
+
+Cypress.Commands.add('testResults',()=>{
+  cy.get('.v-clip').should('exist')
+  cy.get('.v-clip',{timeout:2*60*1000}).should('not.exist')
+  cy.get('[class*="representative"] >:nth-child(2) > :nth-child(4) > small').should('contain','כתיב')
+  cy.get('[class*="representative"] >:nth-child(3) > :nth-child(3) > small').should('contain','דרב')
 })
 
 
