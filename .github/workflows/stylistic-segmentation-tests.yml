@@ -37,11 +37,11 @@ jobs:
 
     - name: Run chrome requests tests
       run: npx cypress run --browser chrome --spec ./cypress/integration/requestsTests.js
-      if: ${{ always() }}
+      #if: ${{ always() }}
 
-    - name: Run firefox requests tests
-      run: npx cypress run --browser firefox --spec ./cypress/integration/requestsTests.js
-      if: ${{ always() }}
+    #- name: Run firefox requests tests
+      #run: npx cypress run --browser firefox --spec ./cypress/integration/requestsTests.js
+      #if: ${{ always() }}
 
 
     - name: Copy test execution videos
