@@ -1,5 +1,10 @@
 {
     "projectId": "fjz2fm",
     "screenshotOnRunFailure": false,
-    "defaultCommandTimeout": 10000
+    "defaultCommandTimeout": 10000,
+    "baseUrl":"https://segment.dicta.org.il/",
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
 }

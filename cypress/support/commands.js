@@ -53,12 +53,12 @@ Cypress.Commands.add('testResults',()=>{
 
 
 Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,message='',delaySeconds=0})=>{
+  cy.intercept('POST', '**', {
+    statusCode: 200
+  },)
   cy.intercept('POST', '**/'+url, {
     delayMs:1000*delaySeconds,
     statusCode: status
-  },)
-  cy.intercept('POST', '**', {
-    statusCode: 200
   },)
   cy.setLanguageMode(language)
   if(message.length>0){
