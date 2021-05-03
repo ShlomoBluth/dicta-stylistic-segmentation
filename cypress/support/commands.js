@@ -42,6 +42,7 @@ Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
   cy.get('[type=file]').attachFile('חולין.txt').trigger('change', {force: true});
+  cy.contains('חולין.txt').should('exist')
 })
 
 Cypress.Commands.add('testResults',()=>{
