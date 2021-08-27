@@ -33,7 +33,7 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
     if(delaySeconds>0){
       cy.contains(message,{timeout:delaySeconds*1000}).should('exist')
     }else{
-      cy.contains(message).should('exist')
+      cy.contains(message,{timeout:30000}).should('exist')
     }
   }
 })
@@ -41,8 +41,8 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
 Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click().then(()=>{
-    cy.get('[type=file]').attachFile('חולין.txt').trigger('change', {force: true})
-    cy.contains('חולין.txt').should('exist')
+    cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt').trigger('change', {force: true})
+    cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
   })
 })
 
@@ -55,13 +55,13 @@ Cypress.Commands.add('testResults',()=>{
 
 
 Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,message='',delaySeconds=0})=>{
-  cy.intercept('POST', '**', {
-    statusCode: 200
-  },)
-  cy.intercept('POST', '**/'+url, {
-    delayMs:1000*delaySeconds,
-    statusCode: status
-  },)
+  // cy.intercept('POST', '**', {
+  //   statusCode: 200
+  // },)
+  // cy.intercept('POST', '**/'+url, {
+  //   delayMs:1000*delaySeconds,
+  //   statusCode: status
+  // },)
   cy.setLanguageMode(language)
   if(message.length>0){
     cy.contains(message).should('not.exist')
