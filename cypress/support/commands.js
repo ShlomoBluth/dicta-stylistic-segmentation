@@ -42,7 +42,9 @@ Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click().then(()=>{
     cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt').trigger('change', {force: true})
-    cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
+    .then(()=>{
+      cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
+    })
   })
 })
 
