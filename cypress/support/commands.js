@@ -62,7 +62,7 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
     delayMs:1000*delaySeconds,
     statusCode: status
   },)
-  cy.setLanguageMode(language)
+  cy.setLanguageMode({language:language})
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }
