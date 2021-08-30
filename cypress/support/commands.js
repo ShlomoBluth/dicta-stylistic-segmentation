@@ -40,9 +40,10 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
 
 Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
+  cy.wait(10000)
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
-  
-  cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt')//.trigger('change', {force: true})
+  cy.wait(10000)
+  cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt').trigger('change', {force: true})
   cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
 })
 
