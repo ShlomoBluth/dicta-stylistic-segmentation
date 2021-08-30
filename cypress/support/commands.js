@@ -1,32 +1,32 @@
 import 'cypress-wait-until';
 import 'cypress-file-upload';
 
-Cypress.Commands.add('setLanguageMode',(language)=>{
-  cy.get('body').then(elem => {
-    let languageMode
-    if(language=='Hebrew'){
-      languageMode='he'
-    }else if(language=='English'){
-      languageMode=''
-    }
-    let classAttr
-    if(elem.attr("class").substring(elem.attr("class").length-2,
-    elem.attr("class").length)=='he'){
-      classAttr='he'
-    }else{
-      classAttr=''  
-    }
-    if(classAttr!=languageMode)
-    {
-      cy.get('a').contains(/^English$|^עברית$/g).click();
-    }
-    if(languageMode=='he'){
-      cy.get('a').contains(/^English$/).should('exist')
-    } else{
-      cy.get('a').contains(/^עברית$/).should('exist')
-    }
-  }) 
-})  
+// Cypress.Commands.add('setLanguageMode',(language)=>{
+//   cy.get('body').then(elem => {
+//     let languageMode
+//     if(language=='Hebrew'){
+//       languageMode='he'
+//     }else if(language=='English'){
+//       languageMode=''
+//     }
+//     let classAttr
+//     if(elem.attr("class").substring(elem.attr("class").length-2,
+//     elem.attr("class").length)=='he'){
+//       classAttr='he'
+//     }else{
+//       classAttr=''  
+//     }
+//     if(classAttr!=languageMode)
+//     {
+//       cy.get('a').contains(/^English$|^עברית$/g).click();
+//     }
+//     if(languageMode=='he'){
+//       cy.get('a').contains(/^English$/).should('exist')
+//     } else{
+//       cy.get('a').contains(/^עברית$/).should('exist')
+//     }
+//   }) 
+// })  
 
 Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
   if(message.length>0){
@@ -40,12 +40,10 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
 
 Cypress.Commands.add('stylisticSegmentationRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
-  cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click().then(()=>{
-    cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt').trigger('change', {force: true})
-    .then(()=>{
-      cy.get('small',{timeout:30000}).contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
-    })
-  })
+  cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
+  
+  cy.get('[type=file]').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt')//.trigger('change', {force: true})
+  cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
 })
 
 Cypress.Commands.add('testResults',()=>{
@@ -60,10 +58,10 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
   // cy.intercept('POST', '**', {
   //   statusCode: 200
   // },)
-  // cy.intercept('POST', '**/'+url, {
-  //   delayMs:1000*delaySeconds,
-  //   statusCode: status
-  // },)
+  cy.intercept('POST', '**/'+url, {
+    delayMs:1000*delaySeconds,
+    statusCode: status
+  },)
   cy.setLanguageMode(language)
   if(message.length>0){
     cy.contains(message).should('not.exist')
