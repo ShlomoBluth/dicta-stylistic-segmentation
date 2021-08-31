@@ -3,6 +3,10 @@
     "screenshotOnRunFailure": false,
     "defaultCommandTimeout": 10000,
     "baseUrl":"https://segment.dicta.org.il/",
+    "retries": {
+        "runMode": 2,
+        "openMode": 0
+    },
     "failOnStatusCode": false,
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
@@ -10,7 +14,7 @@
     },
     "env":{
         "TOOL_TESTS":true,
-        "REQUESTS_TESTS":true,
+        "REQUESTS_TESTS":false,
         "RECORD_KEY":"379b0181-897f-4933-a3d3-2a365c645308"
     }
 }
