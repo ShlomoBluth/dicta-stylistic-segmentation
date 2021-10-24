@@ -24,13 +24,13 @@ urls.forEach((urlValue,urlKey)=>{
             })
             
             it('stylistic segmentation run in hebrew mode',()=>{
-                cy.setLanguageMode('Hebrew')
+                cy.setLanguageMode({language:'Hebrew'})
                 cy.stylisticSegmentationRun()
                 cy.testResults()
             })
         
             it('stylistic segmentation run in english mode',()=>{
-                cy.setLanguageMode('English')
+                cy.setLanguageMode({language:'English'})
                 cy.stylisticSegmentationRun()
                 cy.testResults()
             })
