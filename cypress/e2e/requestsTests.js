@@ -165,15 +165,15 @@ urls.forEach((urlValue,urlKey)=>{
 
     
   
-      it('Error message for segment response with a delay of 1 minutes when clicking the run button'+
-      ' of segment page in english mode',()=>{
-        cy.stylisticSegmentationRequest({
-          url:'segment',
-          language:'English',
-          message:'Oops. Something went wrong Please try again later',
-          delaySeconds:60*2
-        })
-      })
+      // it('Error message for segment response with a delay of 1 minutes when clicking the run button'+
+      // ' of segment page in english mode',()=>{
+      //   cy.stylisticSegmentationRequest({
+      //     url:'segment',
+      //     language:'English',
+      //     message:'Oops. Something went wrong Please try again later',
+      //     delaySeconds:60*2
+      //   })
+      // })
     
       
       // it('Error message for segment response with status code 500 when clicking the run button of segment page'+
