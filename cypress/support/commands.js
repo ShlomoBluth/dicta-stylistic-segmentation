@@ -50,9 +50,9 @@ Cypress.Commands.add('stylisticSegmentationCorpusRun',()=>{
 Cypress.Commands.add('stylisticSegmentationImportTextRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
-  cy.get('#browse-file > button > input').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt')
+  cy.get('#browse-file > button > input').attachFile('Genesis.txt')
   .trigger('change')
-  cy.contains('הריסות ביתרמאת קלמן שולמןמבוא.txt').should('exist')
+  cy.contains('Genesis.txt').should('exist')
 })
 
 Cypress.Commands.add('testResults',()=>{
@@ -75,7 +75,7 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }
-  cy.stylisticSegmentationRun().then(()=>{
+  cy.stylisticSegmentationImportTextRun().then(()=>{
     cy.testMessage({
       message:message,
       delaySeconds:delaySeconds
