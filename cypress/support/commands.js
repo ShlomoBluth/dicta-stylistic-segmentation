@@ -38,7 +38,16 @@ Cypress.Commands.add('testMessage',({message='',delaySeconds=0})=>{
   }
 })
 
-Cypress.Commands.add('stylisticSegmentationRun',()=>{
+Cypress.Commands.add('stylisticSegmentationCorpusRun',()=>{
+  cy.get('#browse-text > .btn').click({force:true})
+  cy.get(':nth-child(2) > .btn > .fas').click({force:true})
+  cy.get(':nth-child(2) > .btn > .fas').click({force:true})
+  cy.wait(1000)
+  cy.get(':nth-child(2) > .custom-control > .custom-control-label ').click({force:true})
+  cy.get('#__BVID__16___BV_modal_footer_ > .btn-primary').click({force:true})
+})
+
+Cypress.Commands.add('stylisticSegmentationImportTextRun',()=>{
   cy.get('#__BVID__12__BV_toggle_ ').click()
   cy.get('#__BVID__12 > .dropdown-menu > :nth-child(2) > .dropdown-item').click()
   cy.get('#browse-file > button > input').attachFile('הריסות ביתרמאת קלמן שולמןמבוא.txt')
@@ -49,8 +58,8 @@ Cypress.Commands.add('stylisticSegmentationRun',()=>{
 Cypress.Commands.add('testResults',()=>{
   cy.get('.v-clip').should('exist')
   cy.get('.v-clip',{timeout:2*60*1000}).should('not.exist')
-  cy.get('[class*="representative"] >:nth-child(2) > :nth-child(4) > small').should('contain','ההיא')
-  cy.get('[class*="representative"] >:nth-child(3) > :nth-child(3) > small').should('contain','בקול')
+  cy.get('[class*="representative"] >:nth-child(2) > :nth-child(4) > small').should('contain','נֹחַ')
+  cy.get('[class*="representative"] >:nth-child(3) > :nth-child(3) > small').should('contain','לִּי/לִי/לִֿי')
 })
 
 

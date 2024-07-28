@@ -22,18 +22,30 @@ urls.forEach((urlValue,urlKey)=>{
                 cy.screenSize({size:sizeValue})
                 cy.visitpage({url:urlValue})
             })
-            
-            it('stylistic segmentation run in hebrew mode',()=>{
+
+            it('stylistic segmentation Corpus run in hebrew mode',()=>{
                 cy.setLanguageMode({language:'Hebrew'})
-                cy.stylisticSegmentationRun()
+                cy.stylisticSegmentationCorpusRun()
                 cy.testResults()
             })
-        
-            it('stylistic segmentation run in english mode',()=>{
+
+            it('stylistic segmentation Corpus run in english mode',()=>{
                 cy.setLanguageMode({language:'English'})
-                cy.stylisticSegmentationRun()
+                cy.stylisticSegmentationCorpusRun()
                 cy.testResults()
             })
+            
+            // it('stylistic segmentation import textrun in hebrew mode',()=>{
+            //     cy.setLanguageMode({language:'Hebrew'})
+            //     cy.stylisticSegmentationImportTextRun()
+            //     cy.testResults()
+            // })
+        
+            // it('stylistic segmentation import text run in english mode',()=>{
+            //     cy.setLanguageMode({language:'English'})
+            //     cy.stylisticSegmentationImportTextRun()
+            //     cy.testResults()
+            // })
         
         })
     })
