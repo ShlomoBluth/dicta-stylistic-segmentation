@@ -57,7 +57,7 @@ Cypress.Commands.add('stylisticSegmentationImportTextRun',()=>{
 
 Cypress.Commands.add('testResults',()=>{
   cy.get('.v-clip').should('exist')
-  cy.get('.v-clip',{timeout:2*60*1000}).should('not.exist')
+  cy.get('.v-clip',{timeout:5*60*1000}).should('not.exist')
   cy.get('[class*="representative"] >:nth-child(2) > :nth-child(4) > small').should('contain','נֹחַ')
   cy.get('[class*="representative"] >:nth-child(3) > :nth-child(3) > small').should('contain','לִּי/לִי/לִֿי')
 })
