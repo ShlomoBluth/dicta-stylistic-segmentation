@@ -17,14 +17,12 @@ module.exports = defineConfig({
   env: {
     DEV_URL: '',
     LIVE_URL: 'https://segment.dicta.org.il/',
-    TOOL_TESTS: true,
-    REQUESTS_TESTS: false,
-    RECORD_KEY: '379b0181-897f-4933-a3d3-2a365c645308',
   },
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
+      require('./dicta-shared/videoCleanup')(on)
       return require('./cypress/plugins/index.js')(on, config)
     },
     baseUrl: 'https://segment.dicta.org.il/',
