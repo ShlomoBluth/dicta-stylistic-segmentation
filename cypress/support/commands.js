@@ -68,7 +68,7 @@ Cypress.Commands.add('stylisticSegmentationRequest',({url,language,status=200,me
   //   statusCode: 200
   // },)
   cy.intercept('POST', '**/'+url, {
-    delayMs:1000*delaySeconds,
+    delay:1000*delaySeconds,
     statusCode: status
   },)
   cy.setLanguageMode({language:language})
